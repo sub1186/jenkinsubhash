@@ -7,6 +7,11 @@ pipeline {
             }
         }
         stage("test") {
+           when {
+              expression {
+                 BRANCH_NAME == 'DEV' || BRANCH_NAME == 'master' 
+              }
+           }
            steps {
              echo "test stage"
             }
@@ -17,4 +22,11 @@ pipeline {
              }
         }
     }
- }
+post {
+   always {
+      
+   }
+   success {
+    }
+  }
+}
